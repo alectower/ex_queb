@@ -79,6 +79,7 @@ defmodule ExQueb do
     where(query, [q], fragment("? <= ?", field(q, ^fld), type(^value, Ecto.DateTime)))
   end
 
+  defp cast_date_time(%NaiveDateTime{} = datetime), do: datetime
   defp cast_date_time(value) do
     {:ok, date} = Ecto.Date.cast(value)
     date
